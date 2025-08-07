@@ -1,0 +1,9 @@
+{
+  "name": "browzine-coverart-api",
+  "version": "1.0.0",
+  "description": "Netlify functions for Browzine cover art API",
+  "main": "netlify/functions/get-cover.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
