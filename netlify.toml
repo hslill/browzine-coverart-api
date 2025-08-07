@@ -1,2 +1,6 @@
 [build]
   functions = "netlify/functions"
+
+  [dev]
+  edge_functions = false
+
