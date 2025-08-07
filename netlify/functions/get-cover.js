@@ -10,14 +10,14 @@ exports.handler = async function(event, context) {
     };
   }
 
-  const apiKey = process.env.BROWZINE_API_KEY; // this must be set in your Netlify environment
+  const apiKey = process.env.BROWZINE_API_KEY;
   const url = `https://public-api.thirdiron.com/public/v1/libraries/3820/journals/issn/${issn}`;
 
   try {
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`  // CORRECT way to use a token
+        'Authorization': `Bearer ${apiKey}`
       }
     });
 
