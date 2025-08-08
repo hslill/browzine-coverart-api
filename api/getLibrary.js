@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const url = `https://public-api.thirdiron.com/public/v1/search?issns=${encodeURIComponent(issn)}`;
+    const url = `https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`;
     console.log(`Fetching URL: ${url}`);
     console.log('Authorization header:', `Bearer ${apiKey}`);
 
