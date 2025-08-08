@@ -1,7 +1,10 @@
+const fetch = require('node-fetch');
+
 module.exports = async function handler(req, res) {
-  console.log("BROWZINE_API_KEY:", process.env.BROWZINE_API_KEY ? 'set' : 'NOT SET');
   const { issn } = req.query;
-  const apiKey = "0a8115ed-3148-4291-8c79-54466fabdc3e";
+  const apiKey = process.env.BROWZINE_API_KEY || "0a8115ed-3148-4291-8c79-54466fabdc3e";
+
+  console.log("BROWZINE_API_KEY:", apiKey ? 'set' : 'NOT SET');
 
   if (!issn) {
     return res.status(400).json({ error: "Missing 'issn' query parameter" });
@@ -10,26 +13,27 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: "API key not configured" });
   }
 
+  const apiUrl = `https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`;
+  console.log(`Fetching URL: ${apiUrl}`);
+  console.log(`Authorization header: Bearer ${apiKey}`);
+
   try {
-    console.log(`Fetching URL: https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`);
-console.log('Authorization header:', `Bearer ${process.env.BROWZINE_API_KEY}`);
-
-const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
-const data = await response.json();
-console.log(data);
-
-    headers: { Authorization: `Bearer ${apiKey}` }
-  }
-);
+    const response = await fetch(apiUrl, {
+      headers: { Authorization: `Bearer ${apiKey}` }
+    });
 
     if (!response.ok) {
       const errorData = await response.json();
+      console.error('API response error:', errorData);
       return res.status(response.status).json({ error: errorData });
     }
 
     const data = await response.json();
+    console.log('API response data:', data);
     res.status(200).json(data);
+
   } catch (error) {
+    console.error('Fetch error:', error);
     res.status(500).json({ error: error.message || "Unknown error" });
   }
 };
