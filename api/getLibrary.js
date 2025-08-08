@@ -1,7 +1,7 @@
 module.exports = async function handler(req, res) {
   console.log("BROWZINE_API_KEY:", process.env.BROWZINE_API_KEY ? 'set' : 'NOT SET');
   const { issn } = req.query;
-  const apiKey = process.env.BROWZINE_API_KEY;
+  const apiKey = "0a8115ed-3148-4291-8c79-54466fabdc3e";
 
   if (!issn) {
     return res.status(400).json({ error: "Missing 'issn' query parameter" });
