@@ -10,12 +10,12 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(
-      `https://public-api.thirdiron.com/public/v1/libraries/3820/journals/${encodeURIComponent(issn)}`,
-      {
-        headers: { Authorization: `Bearer ${apiKey}` }
-      }
-    );
+const response = await fetch(
+  `https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`,
+  {
+    headers: { Authorization: `Bearer ${apiKey}` }
+  }
+);
 
     if (!response.ok) {
       const errorData = await response.json();
