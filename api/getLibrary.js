@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { issn } = req.query;
   const apiKey = process.env.BROWZINE_API_KEY;
 
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://public-api.thirdiron.com/public/v1/libraries/3820/journals/${encodeURIComponent(issn)}`
+      `https://public-api.thirdiron.com/public/v1/libraries/3820/journals/${encodeURIComponent(issn)}`,
       {
         headers: { Authorization: `Bearer ${apiKey}` }
       }
@@ -27,4 +27,4 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ error: error.message || "Unknown error" });
   }
-}
+};
