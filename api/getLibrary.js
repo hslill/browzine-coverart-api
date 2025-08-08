@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://public-api.thirdiron.com/public/v1/libraries/3820/search?query=${encodeURIComponent(issn)}`,
+      `https://public-api.thirdiron.com/public/v1/libraries/3820/journals/${encodeURIComponent(issn)}`
       {
         headers: { Authorization: `Bearer ${apiKey}` }
       }
