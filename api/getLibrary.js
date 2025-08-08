@@ -1,4 +1,5 @@
 module.exports = async function handler(req, res) {
+  console.log("BROWZINE_API_KEY:", process.env.BROWZINE_API_KEY ? 'set' : 'NOT SET');
   const { issn } = req.query;
   const apiKey = process.env.BROWZINE_API_KEY;
 
@@ -10,6 +11,9 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    console.log(`Fetching URL: https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`);
+console.log('Authorization header:', `Bearer ${process.env.BROWZINE_API_KEY}`);
+
 const response = await fetch(
   `https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`,
   {
