@@ -1,4 +1,13 @@
 module.exports = async function handler(req, res) {
+  // Allow CORS for your frontend domain or '*'
+  res.setHeader('Access-Control-Allow-Origin', '*'); // or 'https://hslguides.med.nyu.edu'
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Handle OPTIONS preflight requests quickly
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
   console.log("BROWZINE_API_KEY:", process.env.BROWZINE_API_KEY ? 'set' : 'NOT SET');
   const { issn } = req.query;
   const apiKey = process.env.BROWZINE_API_KEY || "0a8115ed-3148-4291-8c79-54466fabdc3e";
