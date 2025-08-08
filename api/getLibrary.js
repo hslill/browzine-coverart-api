@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 module.exports = async function handler(req, res) {
   const { issn } = req.query;
   const apiKey = process.env.BROWZINE_API_KEY || "0a8115ed-3148-4291-8c79-54466fabdc3e";
