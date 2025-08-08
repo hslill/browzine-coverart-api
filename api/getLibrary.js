@@ -21,7 +21,8 @@ module.exports = async function handler(req, res) {
   const cleanIssn = issn.replace(/-/g, '');
 
   try {
-    const url = `https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(cleanIssn)}`;
+const url = `https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)},${encodeURIComponent(cleanIssn)}`;
+
     console.log(`Fetching URL: ${url}`);
 
     const response = await fetch(url, {
