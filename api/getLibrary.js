@@ -14,9 +14,10 @@ module.exports = async function handler(req, res) {
     console.log(`Fetching URL: https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`);
 console.log('Authorization header:', `Bearer ${process.env.BROWZINE_API_KEY}`);
 
-const response = await fetch(
-  `https://public-api.thirdiron.com/public/v1/libraries/3820/search?issns=${encodeURIComponent(issn)}`,
-  {
+const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+const data = await response.json();
+console.log(data);
+
     headers: { Authorization: `Bearer ${apiKey}` }
   }
 );
